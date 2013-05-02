@@ -1,4 +1,4 @@
-package avionics
+package nmcb.avionics
 
 import akka.actor.{Props, ActorRef, ActorSystem}
 import akka.pattern.ask

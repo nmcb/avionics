@@ -1,4 +1,4 @@
-package avionics
+package nmcb.avionics
 
 import akka.actor.{Actor, ActorSystem}
 import akka.testkit.{TestKit, TestActorRef}

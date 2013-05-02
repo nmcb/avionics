@@ -1,6 +1,6 @@
 name := "avionics"
 
-organization := "splatter"
+organization := "nmcb"
 
 version := "0.1-SNAPSHOT"
 

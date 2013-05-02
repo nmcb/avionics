@@ -22,6 +22,7 @@ object TalkingMain
 	
 	def main(args: Array[String]) {
 		send("Good Morning")
+      Thread.sleep(100)
 		send("Wanker")
 		system.shutdown()
 	}
