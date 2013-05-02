@@ -3,28 +3,32 @@ package avionics
 import akka.actor.{Props, Actor, ActorLogging}
 
 object Plane {
-	case object GiveMeControl
+
+   case object GiveMeControl
+
 }
 
-class Plane extends Actor with ActorLogging {
-	import Altimeter._
-	import Plane._
-	import EventSource._
+class Plane extends Actor
+                    with ActorLogging {
 
-	val altimeter = context.actorOf(Props[Altimeter], "Altimeter")
-	val controls  = context.actorOf(Props(new ControlSurfaces(altimeter)), "ControlSurfaces")
+   import Altimeter._
+   import Plane._
+   import EventSource._
 
-    override def preStart() {
-		altimeter ! RegisterListener(self)
-	}
-	
-	def receive = {
-		case AltitudeUpdate(altitude) => {
-			log info(f"Altitude is now: $altitude%2.2f.")
-		}
-		case GiveMeControl => {
-			log info("Plane giving control.")
-			sender ! controls
-		}
-	}
+   val altimeter = context.actorOf(Props(Altimeter()), "Altimeter")
+   val controls  = context.actorOf(Props(new ControlSurfaces(altimeter)), "ControlSurfaces")
+
+   override def preStart() {
+      altimeter ! RegisterListener(self)
+   }
+
+   def receive = {
+      case AltitudeUpdate(altitude) => {
+         log info (f"Altitude is now: $altitude%2.2f.")
+      }
+      case GiveMeControl => {
+         log info ("Plane giving control.")
+         sender ! controls
+      }
+   }
 }
