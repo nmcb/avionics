@@ -36,7 +36,9 @@ class EventSourceSpec extends TestKit(ActorSystem("EventSourceSpec"))
       "allow us to unregister a listener" in {
          val real = TestActorRef[TestEventSource].underlyingActor
          real.receive(RegisterListener(testActor))
+         real.listeners should contain(testActor)
          real.receive(UnregisterListener(testActor))
+         real.listeners should not contain (testActor)
       }
       "send the event to our test actor" in {
          val testA = TestActorRef[TestEventSource]
