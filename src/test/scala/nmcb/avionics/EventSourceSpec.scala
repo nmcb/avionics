@@ -10,17 +10,17 @@ import org.scalatest.Matchers
 // the requirements of the trait so that we can test the
 // production code.
 class TestEventSource extends Actor
-                              with ProductionEventSource {
+                              with ProductionEventSource
+{
 
    def receive = eventSourceReceive
 }
 
-// "class"Spec is a decent convention we'll be following
 class EventSourceSpec extends TestKit(ActorSystem("EventSourceSpec"))
                               with WordSpecLike
                               with Matchers
-                              with BeforeAndAfterAll {
-
+                              with BeforeAndAfterAll
+{
    import EventSource._
 
    override def afterAll() {

@@ -2,14 +2,15 @@ package nmcb.avionics
 
 import akka.actor.{Actor, ActorRef}
 
-trait EventSource {
+trait EventSource
+{
    def sendEvent[T](event: T)
-
    def eventSourceReceive: Actor.Receive
 }
 
 trait ProductionEventSource extends
-EventSource {
+EventSource
+{
    this: Actor =>
 
    import EventSource._
@@ -26,7 +27,8 @@ EventSource {
    }
 }
 
-object EventSource {
+object EventSource
+{
    case class RegisterListener(listener: ActorRef)
    case class UnregisterListener(listener: ActorRef)
 }

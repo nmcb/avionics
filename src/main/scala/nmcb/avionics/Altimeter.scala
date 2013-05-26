@@ -4,7 +4,8 @@ import akka.actor.{Actor, ActorLogging}
 import scala.concurrent.duration._
 
 class Altimeter extends Actor
-                        with ActorLogging {
+                        with ActorLogging
+{
    this: EventSource =>
 
    import Altimeter._
@@ -40,7 +41,8 @@ class Altimeter extends Actor
    override def postStop(): Unit = ticker.cancel
 }
 
-object Altimeter {
+object Altimeter
+{
    case class RateChange(amount: Float)
    case class AltitudeUpdate(altitude: Double)
 

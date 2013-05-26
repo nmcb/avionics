@@ -7,7 +7,8 @@ import akka.util.Timeout
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 
-object Avionics {
+object Avionics
+{
 
    implicit val timeout = Timeout(5.seconds)
 
